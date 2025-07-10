@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Walmart UI Clone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100vw;
+      min-width: 100vw;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #f6f6f6;
+      color: #111;
+      min-height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
+    }
+
+    .top-bar {
+      background: #004f9a;
+      color: #fff;
+      font-size: 0.95rem;
+      padding: 6px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-bar .left, .top-bar .right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    header.walmart-header {
+      background: #0071dc;
+      color: #fff;
+      padding: 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      border: none;
+    }
+    /* Walmart Header Pixel-Perfect Styles */
+    .header-exact-flex {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 6px 2vw 4px 2vw;
+      gap: 1vw;
+      width: 100vw;
+      max-width: 100vw;
+      box-sizing: border-box;
+    }
+    .header-spark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      margin-right: 4px;
+    }
+    .spark-logo-exact {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      min-height: 36px;
+      object-fit: contain;
+      background: #0071dc;
+      border-radius: 50%;
+      padding: 3px;
+      display: block;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .pickup-delivery-box {
+      display: flex;
+      align-items: center;
+      background: #003087;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border-radius: 18px;
+      padding: 0 8px 0 2px;
+      min-width: 160px;
+      height: 32px;
+      margin-right: 6px;
+      gap: 5px;
+    }
+    .pickup-icon-bg {
+      background: #003087;
+      border: 1.5px solid #fff;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 3px;
+    }
+    .pickup-icon-exact {
+      width: 14px;
+      height: 14px;
+      object-fit: contain;
+      display: block;
+    }
+    .pickup-delivery-texts {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+    .pickup-title-exact {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #fff;
+      margin-bottom: 0;
+      letter-spacing: 0.01em;
+    }
+    .pickup-location-exact {
+      font-size: 0.78rem;
+      color: #b3d7ff;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 1.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .chevron-down-icon {
+      width: 9px;
+      height: 9px;
+      margin-left: 1px;
+      vertical-align: middle;
+    }
+    .search-bar-exact {
+      flex: 1 1 400px;
+      margin: 0 0.5vw;
+      min-width: 100px;
+      max-width: 400px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      position: relative;
+    }
+    .search-bar-exact input {
+      flex: 1;
+      padding: 0 8px;
+      border: none;
+      font-size: 0.92rem;
+      outline: none;
+      height: 100%;
+      background: transparent;
+      color: #004f9a;
+    }
+    .search-bar-exact button {
+      background: #003087;
+      border: none;
+      width: 22px;
+      height: 22px;
+      margin-right: 1px;
+      color: #fff;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background 0.2s;
+      position: absolute;
+      right: 3px;
+      top: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    }
+    .search-bar-exact button:hover {
+      background: #004f9a;
+    }
+    .search-icon-exact {
+      width: 12px;
+      height: 12px;
+      object-fit: contain;
+      display: block;
+    }
+    .header-right-exact {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 12px;
+      min-width: 0;
+      margin-left: 0.5vw;
+      justify-content: flex-end;
+      max-width: 100vw;
+    }
+    .header-action-exact {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0px;
+      cursor: pointer;
+      position: relative;
+      font-size: 0.92rem;
+      min-width: 48px;
+      min-height: 36px;
+    }
+    .header-icon-exact {
+      width: 18px;
+      height: 18px;
+      margin-bottom: 0px;
+      display: block;
+    }
+    .action-text-exact {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.1;
+    }
+    .action-title-exact {
+      font-size: 0.82rem;
+      color: #b3d7ff;
+      font-weight: 400;
+    }
+    .action-link-exact {
+      font-size: 0.98rem;
+      color: #fff;
+      font-weight: 700;
+    }
+    .cart-action-exact {
+      flex-direction: row;
+      align-items: center;
+      gap: 4px;
+      min-width: 60px;
+    }
+    .cart-badge-exact {
+      background: #ffc220;
+      color: #222;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border-radius: 50%;
+      padding: 1px 5px;
+      position: absolute;
+      top: -8px;
+      right: 10px;
+      border: 1.5px solid #0071dc;
+      z-index: 2;
+    }
+    .cart-price-exact {
+      font-size: 0.98rem;
+      color: #fff;
+      font-weight: 700;
+      margin-left: 10px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.7rem;
+      font-weight: bold;
+      gap: 8px;
+    }
+    .logo img {
+      height: 32px;
+      width: 32px;
+    }
+
+    /* Header Walmart Spark and Pickup icon sizing fix */
+    .spark-logo {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      object-fit: contain;
+      background: #0071dc;
+      border-radius: 50%;
+      padding: 4px;
+      margin-right: 8px;
+      display: block;
+    }
+    .pickup-icon {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      min-height: 32px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 50%;
+      padding: 2px;
+      display: block;
+    }
+    .pickup-box {
+      gap: 8px;
+    }
+
+    .search-bar {
+      flex: 1;
+      margin: 0 18px;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      min-width: 220px;
+      max-width: 600px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    .search-bar select {
+      border: none;
+      background: #f3f3f3;
+      padding: 0 10px;
+      height: 40px;
+      font-size: 1rem;
+      color: #333;
+      outline: none;
+    }
+    .search-bar input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+    }
+    .search-bar button {
+      background: #ffc220;
+      border: none;
+      padding: 0 16px;
+      height: 40px;
+      color: #222;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      border-radius: 0 6px 6px 0;
+    }
+
+    nav {
+      background: #fff;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      min-height: 48px;
+      gap: 18px;
+    }
+    nav a, nav .dropdown {
+      text-decoration: none;
+      color: #0071dc;
+      font-weight: 500;
+      padding: 12px 10px;
+      border-radius: 4px;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    nav a:hover, nav .dropdown:hover {
+      background: #f3f3f3;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: #fff;
+      min-width: 180px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      z-index: 2;
+      left: 0;
+      top: 100%;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .dropdown-content a {
+      color: #0071dc;
+      padding: 10px 16px;
+      display: block;
+      text-decoration: none;
+      border-radius: 0;
+    }
+    .dropdown-content a:hover {
+      background: #f6f6f6;
+    }
+
+    .hero {
+      background: url('https://i.imgur.com/b4egFJJ.jpg') center/cover no-repeat;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: white;
+      text-align: left;
+      padding-left: 60px;
+      position: relative;
+    }
+    .hero .hero-content {
+      background: rgba(0, 0, 0, 0.45);
+      padding: 28px 36px;
+      border-radius: 12px;
+      max-width: 420px;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 18px;
+      padding: 24px 20px 0 20px;
+    }
+    .category-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px 8px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      transition: box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .category-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+    }
+    .category-card img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin-bottom: 8px;
+    }
+    .category-card span {
+      font-size: 1rem;
+      color: #222;
+    }
+
+    .products {
+      padding: 24px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+    .product-card {
+      background: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: box-shadow 0.2s;
+    }
+    .product-card:hover {
+      box-shadow: 0 6px 16px rgba(0,0,0,0.13);
+    }
+    .product-card img {
+      max-width: 100%;
+      height: 150px;
+      object-fit: contain;
+    }
+    .product-card h4 {
+      margin: 10px 0 5px;
+    }
+
+    .deals-banner {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      align-items: stretch;
+      width: 100vw;
+      max-width: 100vw;
+      margin: 32px 0 0 0;
+      background: transparent;
+      color: #222;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      position: relative;
+      z-index: 2;
+    }
+    .deals-banner-left {
+      background: #54c3f8;
+      border-radius: 24px 0 0 24px;
+      flex: 2;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 0 40px 32px;
+    }
+    .deals-banner-title {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: #002d58;
+      line-height: 1.1;
+    }
+    .deals-banner-subtitle {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #002d58;
+      margin-top: 24px;
+    }
+    .deals-banner-right {
+      background: #ffc220;
+      border-radius: 0 24px 24px 0;
+      flex: 1.2;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 32px 40px 32px;
+    }
+    .deals-banner-logo-row {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #002d58;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .deals-banner-logo {
+      height: 32px;
+      width: 32px;
+      vertical-align: middle;
+      object-fit: contain;
+    }
+    .deals-banner-badge-row {
+      margin: 18px 0 0 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .deals-banner-badge {
+      height: 56px;
+      width: auto;
+      object-fit: contain;
+    }
+    .deals-banner-promo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #002d58;
+    }
+    .deals-banner-desc {
+      font-size: 1.15rem;
+      color: #002d58;
+      margin: 12px 0 0 0;
+    }
+    .deals-banner-btn {
+      margin: 18px 0 0 0;
+      display: inline-block;
+      background: #0071dc;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 10px 28px;
+      border-radius: 22px;
+      text-decoration: none;
+      transition: background 0.18s;
+    }
+    .deals-banner-btn:hover {
+      background: #005cb8;
+    }
+    .deals-banner-note {
+      font-size: 0.98rem;
+      color: #222;
+      margin-top: 18px;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 1200px) {
+      .header-exact-flex {
+        flex-wrap: wrap;
+        padding: 18px 2vw 10px 2vw;
+        gap: 1vw;
+      }
+      .pickup-delivery-box {
+        min-width: 220px;
+        height: 56px;
+        padding: 0 10px 0 6px;
+      }
+      .search-bar-exact {
+        min-width: 180px;
+        margin: 0 1vw;
+      }
+      .header-right-exact {
+        min-width: 120px;
+        gap: 1vw;
+      }
+    }
+    @media (max-width: 800px) {
+      .header-exact-flex {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .pickup-delivery-box, .search-bar-exact, .header-right-exact {
+        min-width: 0;
+        width: 100%;
+        max-width: 100vw;
+        margin: 0 auto 8px auto;
+      }
+      .header-right-exact {
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="walmart-header">
+    <div class="header-exact-flex">
+      <!-- Spark Logo -->
+      <div class="header-spark">
+        <img class="spark-logo-exact" src="images/logo.png" alt="Walmart Spark" />
+      </div>
+      <!-- Pickup/Delivery Box -->
+      <div class="pickup-delivery-box">
+        <div class="pickup-icon-bg">
+          <img src="images/pickup.png" alt="Pickup" class="pickup-icon-exact" />
+        </div>
+        <div class="pickup-delivery-texts">
+          <span class="pickup-title-exact">Pickup or delivery?</span>
+          <span class="pickup-location-exact">Sacramento, 95829 &bull; Sacramento Supercenter <img src="images/chevron-down.svg" alt="v" class="chevron-down-icon"></span>
+        </div>
+      </div>
+      <!-- Search Bar -->
+      <form class="search-bar-exact">
+        <input type="text" placeholder="Search everything at Walmart online and in store" />
+        <button type="submit"><img src="images/search.png" alt="Search" class="search-icon-exact"></button>
+      </form>
+      <!-- Right Actions -->
+      <div class="header-right-exact">
+        <div class="header-action-exact">
+          <img src="images/heart.svg" alt="Reorder" class="header-icon-exact" />
+          <div class="action-text-exact">
+            <span class="action-title-exact">Reorder</span>
+            <span class="action-link-exact">My Items</span>
+          </div>
+        </div>
+        <div class="header-action-exact">
+          <img src="images/user.svg" alt="Account" class="header-icon-exact" />
+          <div class="action-text-exact">
+            <span class="action-title-exact">Sign In</span>
+            <span class="action-link-exact">Account</span>
+          </div>
+        </div>
+        <div class="header-action-exact cart-action-exact">
+          <img src="images/cart.svg" alt="Cart" class="header-icon-exact" />
+          <span class="cart-badge-exact">0</span>
+          <span class="cart-price-exact">$0.00</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <nav>
+    <div class="dropdown">
+      <span>Departments <i class="fa fa-chevron-down"></i></span>
+      <div class="dropdown-content">
+        <a href="#">Grocery</a>
+        <a href="#">Electronics</a>
+        <a href="#">Clothing</a>
+        <a href="#">Home</a>
+        <a href="#">Toys</a>
+        <a href="#">Pharmacy</a>
+      </div>
+    </div>
+    <a href="#">Deals</a>
+    <a href="#">Services</a>
+    <a href="#">Pickup & Delivery</a>
+    <a href="#">Walmart+</a>
+    <a href="#">Gift Cards</a>
+  </nav>
+
+    <div class="deals-banner">
+      <div class="deals-banner-left">
+        <div class="deals-banner-title">DEALS UP TO 50% OFF</div>
+        <div class="deals-banner-subtitle">If it’s hot, it’s here. Don’t miss out.</div>
+      </div>
+      <div class="deals-banner-right">
+        <div class="deals-banner-logo-row">
+          <img src="images/logo.png" alt="Walmart" class="deals-banner-logo"/>
+          Walmart
+        </div>
+        <div class="deals-banner-badge-row">
+          <img src="images/deals-badge.png" alt="Walmart Deals" class="deals-banner-badge"/>
+          <div class="deals-banner-promo">Get 50% off Walmart+</div>
+        </div>
+        <div class="deals-banner-desc">Save big on an annual plan now.</div>
+        <a href="#" class="deals-banner-btn">Join Walmart+</a>
+        <div class="deals-banner-note">Paid members only. While supplies last.</div>
+      </div>
+    </div>
+
+    <!-- AI Suggestions Row (after deals banner, full width, dark blue background, hover suggestions) -->
+    <section class="ai-suggestions-row">
+      <div class="ai-suggestions-title">
+        <i class="fa-solid fa-brain" style="color:#ffc220;font-size:1.3em;margin-right:10px;"></i>
+        <span>AI-powered suggestions for you</span>
+      </div>
+      <div class="ai-suggestions-list">
+        <div class="ai-suggestion-card" tabindex="0">
+          <img src="images/ai_suggested_eggs.png" alt="Eggs" />
+          <div class="ai-suggestion-info">
+            <span class="ai-suggestion-name">Great Value Large Eggs</span>
+            <span class="ai-suggestion-meta">Frequently bought in the morning</span>
+          </div>
+          <div class="ai-suggestion-hover">
+            <strong>Why this?</strong><br>
+            You often buy eggs on Mondays. Try our new organic range!
+          </div>
+        </div>
+        <div class="ai-suggestion-card" tabindex="0">
+          <img src="images/ai_suggested_milk.png" alt="Milk" />
+          <div class="ai-suggestion-info">
+            <span class="ai-suggestion-name">Organic Whole Milk</span>
+            <span class="ai-suggestion-meta">Popular with families</span>
+          </div>
+          <div class="ai-suggestion-hover">
+            <strong>Why this?</strong><br>
+            Milk is a top pick for your area. Save 10% on your next order!
+          </div>
+        </div>
+        <div class="ai-suggestion-card" tabindex="0">
+          <img src="images/ai_suggested_bread.png" alt="Bread" />
+          <div class="ai-suggestion-info">
+            <span class="ai-suggestion-name">Sara Lee White Bread</span>
+            <span class="ai-suggestion-meta">Often paired with eggs</span>
+          </div>
+          <div class="ai-suggestion-hover">
+            <strong>Why this?</strong><br>
+            Bread and eggs are frequently bought together. Try our multigrain!
+          </div>
+        </div>
+        <div class="ai-suggestion-card" tabindex="0">
+          <img src="images/ai_suggested_bananas.png" alt="Bananas" />
+          <div class="ai-suggestion-info">
+            <span class="ai-suggestion-name">Fresh Bananas</span>
+            <span class="ai-suggestion-meta">Trending in your area</span>
+          </div>
+          <div class="ai-suggestion-hover">
+            <strong>Why this?</strong><br>
+            Bananas are trending! Add to your healthy breakfast.
+          </div>
+        </div>
+      </div>
+    </section>
+  <style>
+    /* AI Suggestions Row */
+    .ai-suggestions-row {
+      margin: 32px 0 0 0;
+      padding: 0 3vw 32px 3vw;
+      width: 100vw;
+      max-width: 100vw;
+      box-sizing: border-box;
+      background: linear-gradient(90deg, #1d548b 80%, #0e3665 100%);
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 4px 24px rgba(10,37,64,0.08);
+    }
+    .ai-suggestions-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 0.01em;
+    }
+    .ai-suggestions-list {
+      display: flex;
+      flex-direction: row;
+      gap: 22px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    .ai-suggestion-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      min-width: 260px;
+      max-width: 320px;
+      padding: 16px 18px;
+      gap: 16px;
+      transition: box-shadow 0.18s, transform 0.18s;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+    }
+    .ai-suggestion-card:hover, .ai-suggestion-card:focus {
+      box-shadow: 0 8px 28px rgba(0,113,220,0.18);
+      transform: translateY(-4px) scale(1.03);
+      z-index: 2;
+    }
+    .ai-suggestion-card img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #f6f6f6;
+      border: 1px solid #e0e0e0;
+    }
+    .ai-suggestion-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .ai-suggestion-name {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #002d58;
+    }
+    .ai-suggestion-meta {
+      font-size: 0.98rem;
+      color: #0071dc;
+      opacity: 0.85;
+    }
+    .ai-suggestion-hover {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      margin-top: 8px;
+      background: #143d6b;
+      color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 18px rgba(20,61,107,0.18);
+      padding: 18px 22px;
+      min-width: 220px;
+      max-width: 320px;
+      font-size: 1rem;
+      z-index: 10;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.18s;
+    }
+    .ai-suggestion-card:hover .ai-suggestion-hover,
+    .ai-suggestion-card:focus .ai-suggestion-hover {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+
+    
+
+  <section class="categories">
+    <div class="category-card">
+      <img src="images/category_grocery.png" alt="Grocery" />
+      <span>Grocery</span>
+    </div>
+    <div class="category-card">
+      <img src="images/category_electronics.png" alt="Electronics" />
+      <span>Electronics</span>
+    </div>
+    <div class="category-card">
+      <img src="images/category_clothing.png" alt="Clothing" />
+      <span>Clothing</span>
+    </div>
+    <div class="category-card">
+      <img src="images/category_home.png" alt="Home" />
+      <span>Home</span>
+    </div>
+    <div class="category-card">
+      <img src="images/category_toys.png" alt="Toys" />
+      <span>Toys</span>
+    </div>
+    <div class="category-card">
+      <img src="images/category_pharmacy.png" alt="Pharmacy" />
+      <span>Pharmacy</span>
+    </div>
+  </section>
+
+  <section class="products">
+    <div class="product-card">
+      <img src="images/product_airpods.png" alt="Product" />
+      <h4>Apple AirPods Pro</h4>
+      <p>$199.00</p>
+    </div>
+    <div class="product-card">
+      <img src="images/product_tv.png" alt="Product" />
+      <h4>Samsung 65" TV</h4>
+      <p>$649.99</p>
+    </div>
+    <div class="product-card">
+      <img src="images/product_instantpot.png" alt="Product" />
+      <h4>Instant Pot Duo</h4>
+      <p>$89.00</p>
+    </div>
+    <div class="product-card">
+      <img src="images/product_hoodie.png" alt="Product" />
+      <h4>Men's Hoodie</h4>
+      <p>$24.99</p>
+    </div>
+    <div class="product-card">
+      <img src="images/product_lego.png" alt="Product" />
+      <h4>LEGO Classic Set</h4>
+      <p>$39.99</p>
+    </div>
+    <div class="product-card">
+      <img src="images/product_roomba.png" alt="Product" />
+      <h4>iRobot Roomba</h4>
+      <p>$249.00</p>
+    </div>
+  </section>
+
+  <footer class="walmart-footer">
+    <div class="footer-links-bar">
+      <a href="#">All Departments</a>
+      <a href="#">Store Directory</a>
+      <a href="#">Careers</a>
+      <a href="#">Our Company</a>
+      <a href="#">Sell on Walmart.com</a>
+      <a href="#">Help</a>
+      <a href="#">Product Recalls</a>
+      <a href="#">Accessibility</a>
+      <a href="#">Tax Exempt Program</a>
+      <a href="#">Get the Walmart App</a>
+      <a href="#">Safety Data Sheet</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Privacy Notice</a>
+      <a href="#">California Supply Chain Act</a>
+      <a href="#"> Your Privacy Choices</a>
+      <a href="#">Notice at Collection</a>
+      <a href="#">AdChoices</a>
+      <a href="#">Consumer Health Data Privacy Notices</a>
+      <a href="#">Brand Shop Directory</a>
+      <a href="#">Pharmacy</a>
+      <a href="#">Walmart Business</a>
+      <a href="#">#IWYYK</a>
+      <a href="#">Delete Account</a>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Walmart. The trademarks Walmart and the Walmart Spark design are registered with the US Patent and Trademark Office. All Rights Reserved.</span>
+    </div>
+  </footer>
+
+</style>
+  <style>
+    .walmart-footer {
+      background: #0033a0;
+      color: #fff;
+      padding: 16px 0 0 0;
+      margin-top: 32px;
+      border-top: 1.5px solid #e0e6ef;
+      width: 100vw;
+      max-width: 100vw;
+      box-sizing: border-box;
+    }
+    .footer-links-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 22px;
+      padding: 10px 2vw 0 2vw;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    .footer-links-bar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.97rem;
+      font-weight: 400;
+      transition: color 0.18s;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      line-height: 1.2;
+      padding: 0 2px;
+    }
+    .footer-links-bar a:hover {
+      color: #ffc220;
+      text-decoration: underline;
+    }
+    .privacy-choice-icon {
+      width: 20px;
+      height: 15px;
+      object-fit: contain;
+      vertical-align: middle;
+      background: #fff;
+      border-radius: 3px;
+      border: 1px solid #e0e6ef;
+      margin-right: 2px;
+    }
+    .footer-bottom {
+      text-align: center;
+      color: #e0e6ef;
+      font-size: 0.89rem;
+      padding: 10px 0 10px 0;
+      margin-top: 10px;
+      border-top: 1px solid #e0e6ef;
+      background: #0033a0;
+    }
+    @media (max-width: 900px) {
+      .footer-links-bar {
+        gap: 10px 6px;
+        font-size: 0.89rem;
+        padding: 8px 1vw 0 1vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .footer-links-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 1vw 0 1vw;
+      }
+    }
+  </style>
+</body>
+
+</html>
