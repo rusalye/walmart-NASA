@@ -1,269 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Walmart UI Clone</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
-    }
+    * { box-sizing: border-box; margin:0; padding:0; font-family: 'Roboto', sans-serif; }
+    body { background: #f6f6f6; color:#111; min-height:100vh; }
 
-    html, body {
-      height: 100%;
-      width: 100vw;
-      min-width: 100vw;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background: #f6f6f6;
-      color: #111;
-      min-height: 100vh;
-      width: 100vw;
-      overflow-x: hidden;
-    }
-
-    .top-bar {
-      background: #004f9a;
-      color: #fff;
-      font-size: 0.95rem;
-      padding: 6px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .top-bar .left, .top-bar .right {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
+    /* ===== Improved header ===== */
     header.walmart-header {
       background: #0071dc;
       color: #fff;
-      padding: 0;
       box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-      border: none;
     }
-    /* Walmart Header Pixel-Perfect Styles */
     .header-exact-flex {
       display: flex;
-      flex-direction: row;
       align-items: center;
-      justify-content: flex-start;
-      padding: 6px 2vw 4px 2vw;
-      gap: 1vw;
-      width: 100vw;
-      max-width: 100vw;
-      box-sizing: border-box;
+      justify-content: space-between;
+      padding: 8px 2vw;
+      height: 56px;
     }
-    .header-spark {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 48px;
-      margin-right: 4px;
-    }
-    .spark-logo-exact {
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
-      min-height: 36px;
-      object-fit: contain;
-      background: #0071dc;
-      border-radius: 50%;
-      padding: 3px;
-      display: block;
+    .header-spark img {
+      width: 40px; height:40px; background:#0071dc; border-radius:50%; padding:4px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
     .pickup-delivery-box {
-      display: flex;
-      align-items: center;
-      background: #003087;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      border-radius: 18px;
-      padding: 0 8px 0 2px;
-      min-width: 160px;
-      height: 32px;
-      margin-right: 6px;
-      gap: 5px;
+      display:flex; align-items:center; background:#003087;
+      border-radius:18px; padding:0 8px; height:32px;
     }
     .pickup-icon-bg {
-      background: #003087;
-      border: 1.5px solid #fff;
-      border-radius: 50%;
-      width: 22px;
-      height: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 3px;
+      background:#003087; border:1.5px solid #fff; border-radius:50%;
+      width:22px;height:22px; display:flex;justify-content:center;align-items:center;
     }
-    .pickup-icon-exact {
-      width: 14px;
-      height: 14px;
-      object-fit: contain;
-      display: block;
-    }
+    .pickup-icon-exact { width:14px;height:14px; }
     .pickup-delivery-texts {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-width: 0;
+      display:flex; flex-direction:column; margin-left:6px;
     }
-    .pickup-title-exact {
-      font-weight: 700;
-      font-size: 0.92rem;
-      color: #fff;
-      margin-bottom: 0;
-      letter-spacing: 0.01em;
-    }
+    .pickup-title-exact { font-weight:700; font-size:0.92rem; color:#fff; }
     .pickup-location-exact {
-      font-size: 0.78rem;
-      color: #b3d7ff;
-      font-weight: 400;
-      display: flex;
-      align-items: center;
-      gap: 1.5px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size:0.78rem; color:#b3d7ff; display:flex; align-items:center;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
-    .chevron-down-icon {
-      width: 9px;
-      height: 9px;
-      margin-left: 1px;
-      vertical-align: middle;
-    }
+    .chevron-down-icon { width:9px; height:9px; margin-left:2px; }
+
     .search-bar-exact {
-      flex: 1 1 400px;
-      margin: 0 0.5vw;
-      min-width: 100px;
-      max-width: 400px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      position: relative;
+      flex:1; max-width:420px; height:36px; display:flex;
+      align-items:center; background:#fff; border-radius:18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10); position:relative;
     }
     .search-bar-exact input {
-      flex: 1;
-      padding: 0 8px;
-      border: none;
-      font-size: 0.92rem;
-      outline: none;
-      height: 100%;
-      background: transparent;
-      color: #004f9a;
+      flex:1; border:none; outline:none; padding:0 12px;
+      font-size:0.92rem; color:#004f9a;
     }
     .search-bar-exact button {
-      background: #003087;
-      border: none;
-      width: 22px;
-      height: 22px;
-      margin-right: 1px;
-      color: #fff;
-      font-size: 0.92rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: background 0.2s;
-      position: absolute;
-      right: 3px;
-      top: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      position:absolute; right:6px; background:#003087;
+      border:none; width:24px; height:24px; border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer; transition: background 0.2s;
     }
-    .search-bar-exact button:hover {
-      background: #004f9a;
-    }
-    .search-icon-exact {
-      width: 12px;
-      height: 12px;
-      object-fit: contain;
-      display: block;
-    }
+    .search-bar-exact button:hover { background:#004f9a; }
+    .search-bar-exact .search-icon-exact { width:12px; }
+
     .header-right-exact {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-      gap: 12px;
-      min-width: 0;
-      margin-left: 0.5vw;
-      justify-content: flex-end;
-      max-width: 100vw;
+      display:flex; align-items:center; gap:18px;
     }
     .header-action-exact {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0px;
-      cursor: pointer;
-      position: relative;
-      font-size: 0.92rem;
-      min-width: 48px;
-      min-height: 36px;
+      display:flex; flex-direction:column; align-items:center;
+      font-size:0.88rem; cursor:pointer;
     }
-    .header-icon-exact {
-      width: 18px;
-      height: 18px;
-      margin-bottom: 0px;
-      display: block;
-    }
-    .action-text-exact {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      line-height: 1.1;
-    }
-    .action-title-exact {
-      font-size: 0.82rem;
-      color: #b3d7ff;
-      font-weight: 400;
-    }
-    .action-link-exact {
-      font-size: 0.98rem;
-      color: #fff;
-      font-weight: 700;
-    }
-    .cart-action-exact {
-      flex-direction: row;
-      align-items: center;
-      gap: 4px;
-      min-width: 60px;
-    }
+    .header-icon-exact { width:20px; height:20px; margin-bottom:2px; }
+    .action-title-exact { font-size:0.75rem; color:#b3d7ff; }
+    .action-link-exact { font-weight:700; font-size:0.82rem; color:#fff; }
+
+    .cart-action-exact { flex-direction:row; position:relative; }
     .cart-badge-exact {
-      background: #ffc220;
-      color: #222;
-      font-size: 0.82rem;
-      font-weight: 700;
-      border-radius: 50%;
-      padding: 1px 5px;
-      position: absolute;
-      top: -8px;
-      right: 10px;
-      border: 1.5px solid #0071dc;
-      z-index: 2;
+      position:absolute; top:-6px; right:-6px;
+      background:#ffc220; color:#222; font-size:0.7rem;
+      padding:2px 6px; border-radius:50%; border:1.5px solid #0071dc;
     }
-    .cart-price-exact {
-      font-size: 0.98rem;
-      color: #fff;
-      font-weight: 700;
-      margin-left: 10px;
-    }
+    .cart-price-exact { margin-left:6px; font-weight:700; }
 
     .logo {
       display: flex;
@@ -624,50 +442,60 @@
 <body>
 
   <header class="walmart-header">
-    <div class="header-exact-flex">
-      <!-- Spark Logo -->
-      <div class="header-spark">
-        <img class="spark-logo-exact" src="images/logo.png" alt="Walmart Spark" />
+  <div class="header-exact-flex">
+    <!-- Walmart Logo -->
+    <div class="header-spark">
+      <img src="images/logo.png" alt="Walmart Spark" />
+    </div>
+
+    <!-- Pickup or delivery Location Box -->
+    <div class="pickup-delivery-box">
+      <div class="pickup-icon-bg">
+        <i class="fa-solid fa-check pickup-icon-exact" style="color:white; font-size:12px;"></i>
       </div>
-      <!-- Pickup/Delivery Box -->
-      <div class="pickup-delivery-box">
-        <div class="pickup-icon-bg">
-          <img src="images/pickup.png" alt="Pickup" class="pickup-icon-exact" />
-        </div>
-        <div class="pickup-delivery-texts">
-          <span class="pickup-title-exact">Pickup or delivery?</span>
-          <span class="pickup-location-exact">Sacramento, 95829 &bull; Sacramento Supercenter <img src="images/chevron-down.svg" alt="v" class="chevron-down-icon"></span>
-        </div>
-      </div>
-      <!-- Search Bar -->
-      <form class="search-bar-exact">
-        <input type="text" placeholder="Search everything at Walmart online and in store" />
-        <button type="submit"><img src="images/search.png" alt="Search" class="search-icon-exact"></button>
-      </form>
-      <!-- Right Actions -->
-      <div class="header-right-exact">
-        <div class="header-action-exact">
-          <img src="images/heart.svg" alt="Reorder" class="header-icon-exact" />
-          <div class="action-text-exact">
-            <span class="action-title-exact">Reorder</span>
-            <span class="action-link-exact">My Items</span>
-          </div>
-        </div>
-        <div class="header-action-exact">
-          <img src="images/user.svg" alt="Account" class="header-icon-exact" />
-          <div class="action-text-exact">
-            <span class="action-title-exact">Sign In</span>
-            <span class="action-link-exact">Account</span>
-          </div>
-        </div>
-        <div class="header-action-exact cart-action-exact">
-          <img src="images/cart.svg" alt="Cart" class="header-icon-exact" />
-          <span class="cart-badge-exact">0</span>
-          <span class="cart-price-exact">$0.00</span>
-        </div>
+      <div class="pickup-delivery-texts">
+        <span class="pickup-title-exact">Pickup or delivery?</span>
+        <span class="pickup-location-exact">
+          Amrita College, Sarjapur, Bengaluru
+          <i class="fa-solid fa-chevron-down chevron-down-icon" style="font-size: 9px; margin-left: 4px;"></i>
+        </span>
       </div>
     </div>
-  </header>
+
+    <!-- Search Bar -->
+    <form class="search-bar-exact">
+      <input type="text" placeholder="Search everything at Walmart online and in store" />
+      <button type="submit">
+        <i class="fa-solid fa-magnifying-glass" style="color:white; font-size:12px;"></i>
+      </button>
+    </form>
+
+    <!-- Right Side Icons -->
+    <div class="header-right-exact">
+      <!-- Reorder -->
+      <div class="header-action-exact">
+        <i class="fa-regular fa-heart header-icon-exact" style="font-size:20px;"></i>
+        <span class="action-title-exact">Reorder</span>
+        <span class="action-link-exact">My Items</span>
+      </div>
+
+      <!-- Account Icon instead of Sign In -->
+      <div class="header-action-exact">
+        <i class="fa-regular fa-user-circle header-icon-exact" style="font-size:20px;"></i>
+        <span class="action-title-exact">Welcome</span>
+        <span class="action-link-exact">Account</span>
+      </div>
+
+      <!-- Cart -->
+      <div class="header-action-exact cart-action-exact">
+        <i class="fa-solid fa-cart-shopping header-icon-exact" style="font-size:20px;"></i>
+        <span class="cart-badge-exact">0</span>
+        <span class="cart-price-exact">$0.00</span>
+      </div>
+    </div>
+  </div>
+</header>
+
 
 
   <nav>
