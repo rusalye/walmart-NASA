@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Walmart.com</title>
+    <style>
+        /* --- General Resets & Body Styles --- */
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0071dc;
+        }
+        
+        /* --- Color Variables --- */
+        :root {
+            --walmart-blue: #0071dc;
+            --walmart-dark-blue: #004f9a;
+            --walmart-yellow: #ffc120;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --border-color: #e0e0e0;
+        }
+
+        /* --- Header Section (Same as Cart) --- */
+        .page-header {
+            background-color: var(--walmart-blue);
+            color: white;
+            padding: 1rem;
+        }
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .walmart-logo {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 48 48"><path fill="%23FFC120" d="M21.47 33.81a2.4 2.4 0 1 1-4.8 0 2.4 2.4 0 0 1 4.8 0zm11.33-9.48a2.4 2.4 0 1 1-4.8 0 2.4 2.4 0 0 1 4.8 0zm-22.66 0a2.4 2.4 0 1 1-4.8 0 2.4 2.4 0 0 1 4.8 0zm11.33 0a2.4 2.4 0 1 1-4.8 0 2.4 2.4 0 0 1 4.8 0zm11.33 9.48a2.4 2.4 0 1 1-4.8 0 2.4 2.4 0 0 1 4.8 0zm-11.33-18.96a2.4 2.4 0 1 1-4.8 0 2.4 2.4 0 0 1 4.8 0z"></path></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .search-container { flex-grow: 1; }
+        .secure-checkout-text { font-size: 1.25rem; font-weight: bold; text-align: right; }
+
+        /* --- Main Content & Checkout Layout --- */
+        .main-content {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .checkout-details {
+            flex: 2; /* Takes up 2/3 of the space */
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .checkout-section {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .checkout-section h2 {
+            font-size: 1.25rem;
+            margin: 0 0 1.5rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .address-box, .delivery-box {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .address-box p {
+            margin: 0.1rem 0;
+        }
+        
+        .edit-link {
+            font-weight: bold;
+        }
+
+        /* --- Form Styles --- */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box; /* Important for padding and width */
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        /* --- Order Summary Styles --- */
+        .order-summary {
+            flex: 1; /* Takes up 1/3 of the space */
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: sticky;
+            top: 2rem;
+        }
+        
+        .place-order-button {
+            width: 100%;
+            background-color: var(--walmart-blue);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 1rem;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+        }
+        
+        .place-order-button:hover {
+            background-color: var(--walmart-dark-blue);
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .summary-total {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            margin-top: 1rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .summary-items {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .summary-items strong {
+            color: var(--walmart-blue);
+        }
+
+        /* --- Footer Section (Same as Cart) --- */
+        .page-footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="page-header">
+        <div class="header-top">
+            <a href="cart.html" class="walmart-logo" aria-label="Walmart Homepage"></a>
+            <div class="search-container">
+                <!-- Simplified header for checkout -->
+            </div>
+            <div class="secure-checkout-text">
+                Secure checkout
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content" id="maincontent">
+    
+        <div class="checkout-details">
+            <!-- Shipping Address Section -->
+            <section class="checkout-section">
+                <h2>1. Shipping address</h2>
+                <div class="address-box">
+                    <div>
+                        <p><strong>John Doe</strong></p>
+                        <p>123 Main St</p>
+                        <p>Anytown, USA 12345</p>
+                    </div>
+                    <a href="#" class="edit-link">Edit</a>
+                </div>
+            </section>
+            
+            <!-- Delivery Options Section -->
+            <section class="checkout-section">
+                <h2>2. Delivery options</h2>
+                <div class="delivery-box">
+                    <p>Arrives by <strong>Fri, Jul 26</strong></p>
+                </div>
+            </section>
+            
+            <!-- Payment Method Section -->
+            <section class="checkout-section">
+                <h2>3. Payment method</h2>
+                <!-- NOTE: This is a fake form for UI purposes only. It does not submit data. -->
+                <form>
+                    <div class="form-group">
+                        <label for="card-number" class="form-label">Card number</label>
+                        <input type="text" id="card-number" class="form-input" placeholder="0000 0000 0000 0000">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiry-date" class="form-label">Expiration date</label>
+                            <input type="text" id="expiry-date" class="form-input" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv" class="form-label">Security code (CVV)</label>
+                            <input type="text" id="cvv" class="form-input" placeholder="CVV">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name-on-card" class="form-label">Name on card</label>
+                        <input type="text" id="name-on-card" class="form-input" placeholder="John Doe">
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="same-address" checked>
+                        <label for="same-address">Billing address is same as shipping</label>
+                    </div>
+                </form>
+                <h2>3. Pay with Aura</h2>
+                <!-- NOTE: This is a fake form for UI purposes only. It does not submit data. -->
+                <form>
+                    <div class="form-group">
+                        <label for="card-number" class="form-label">Card number</label>
+                        <input type="text" id="card-number" class="form-input" placeholder="0000 0000 0000 0000">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiry-date" class="form-label">Expiration date</label>
+                            <input type="text" id="expiry-date" class="form-input" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv" class="form-label">Security code (CVV)</label>
+                            <input type="text" id="cvv" class="form-input" placeholder="CVV">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name-on-card" class="form-label">Name on card</label>
+                        <input type="text" id="name-on-card" class="form-input" placeholder="John Doe">
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="same-address" checked>
+                        <label for="same-address">Billing address is same as shipping</label>
+                    </div>
+                </form>
+
+
+
+            </section>
+        </div>
+
+        <aside class="order-summary">
+            <button class="place-order-button" onclick="alert('This is a demo. No order will be placed.')">Place order</button>
+            <div class="summary-items">
+                Arrives by <strong>Fri, Jul 26</strong> (3 items)
+            </div>
+            <div class="summary-details">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>$152.93</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <strong>Free</strong>
+                </div>
+                <div class="summary-row">
+                    <span>Taxes</span>
+                    <span>$12.62</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span>$165.55</span>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+    
+    <footer class="page-footer">
+        © 2025 Walmart. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
