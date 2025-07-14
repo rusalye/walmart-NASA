@@ -4,7 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Walmart.com</title>
+
+<script>
+    function toggleSuggestions() {
+        const auraBtn = document.querySelector('.pop-animate');
+        auraBtn.classList.remove('pop-animate'); // reset animation
+        void auraBtn.offsetWidth; // force reflow
+        auraBtn.classList.add('pop-animate'); // re-trigger
+    }
+</script>
+
+
+<script>
+function openAuraModal() {
+  const auraBtn = document.querySelector('.pop-animate');
+  auraBtn.classList.remove('pop-animate'); // Reset animation
+  void auraBtn.offsetWidth;
+  auraBtn.classList.add('pop-animate');
+
+  document.getElementById('aura-modal').style.display = 'flex';
+}
+
+function closeAuraModal(event) {
+  document.getElementById('aura-modal').style.display = 'none';
+}
+</script>
+
     <style>
+@keyframes popOut {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0, 113, 220, 0);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(0, 113, 220, 0.4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0, 113, 220, 0);
+    }
+}
+
+.pop-animate {
+    animation: popOut 0.5s ease-in-out 1;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px); /* background blur */
+  background-color: rgba(0, 0, 0, 0.3); /* semi-transparent dark overlay */
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: popOut 0.4s ease-out;
+}
+
+.modal-content ul {
+  list-style-type: disc;
+  padding-left: 1.2rem;
+  text-align: left;
+}
+
+.modal-content li {
+  margin-bottom: 0.8rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
         /* --- General Resets & Body Styles --- */
         body {
             margin: 0;
@@ -226,7 +315,7 @@
                         <p><strong>John Doe</strong></p>
                         <p>123 Main St</p>
                         <p>Anytown, USA 12345</p>
-                    </div>
+      x              </div>
                     <a href="#" class="edit-link">Edit</a>
                 </div>
             </section>
@@ -267,35 +356,28 @@
                         <label for="same-address">Billing address is same as shipping</label>
                     </div>
                 </form>
-                <h2>3. Pay with Aura</h2>
-                <!-- NOTE: This is a fake form for UI purposes only. It does not submit data. -->
-                <form>
-                    <div class="form-group">
-                        <label for="card-number" class="form-label">Card number</label>
-                        <input type="text" id="card-number" class="form-input" placeholder="0000 0000 0000 0000">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="expiry-date" class="form-label">Expiration date</label>
-                            <input type="text" id="expiry-date" class="form-input" placeholder="MM/YY">
-                        </div>
-                        <div class="form-group">
-                            <label for="cvv" class="form-label">Security code (CVV)</label>
-                            <input type="text" id="cvv" class="form-input" placeholder="CVV">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="name-on-card" class="form-label">Name on card</label>
-                        <input type="text" id="name-on-card" class="form-input" placeholder="John Doe">
-                    </div>
-                    <div class="form-checkbox">
-                        <input type="checkbox" id="same-address" checked>
-                        <label for="same-address">Billing address is same as shipping</label>
-                    </div>
-                </form>
+              
 
 
 
+            </section>
+
+<button class="place-order-button pop-animate" onclick="openAuraModal()">Pay with Aura</button>
+          
+
+<div id="aura-modal" class="modal-overlay" onclick="closeAuraModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeAuraModal()">&times;</span>
+    <h3>Pay with Aura</h3>
+    <ul>
+      <li>Buy now pay later</li>
+      <li>Suggestions based on past purchases:</li>
+      <li><img src="apple.jpg" style="width: 300px; height: auto; vertical-align: middle; margin-right: 8px;"><img src="banana.jpeg" style="width: 300px; height: auto; vertical-align: middle; margin-right: 8px;"></li>
+     
+      
+    </ul>
+  </div>
+</div>            
             </section>
         </div>
 
